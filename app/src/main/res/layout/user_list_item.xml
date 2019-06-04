@@ -20,14 +20,14 @@
             android:id="@+id/name"
             style="@style/TextAppearance.AppCompat.Title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textColor="@color/colorPrimary"
             tool:text="Jhon doe" />
 
         <LinearLayout
             android:id="@+id/contentPhone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
             tool:ignore="UseCompoundDrawables">
 
@@ -44,7 +44,7 @@
                 android:id="@+id/phone"
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 tool:text="1-770-736-8031 x56442" />
         </LinearLayout>
 
