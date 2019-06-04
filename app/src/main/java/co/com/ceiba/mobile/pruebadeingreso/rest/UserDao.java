@@ -1,4 +1,4 @@
-package co.com.ceiba.mobile.pruebadeingreso.data;
+package co.com.ceiba.mobile.pruebadeingreso.rest;
 
 
 import android.arch.persistence.room.Dao;

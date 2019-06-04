@@ -5,10 +5,10 @@ public class Users {
     private String name;
     private String username;
     private String email;
-    Address AddressObject;
+    Address address;
     private String phone;
     private String website;
-    Company CompanyObject;
+    Company company;
 
     public float getId() {
         return id;
@@ -42,12 +42,12 @@ public class Users {
         this.email = email;
     }
 
-    public Address getAddressObject() {
-        return AddressObject;
+    public Address getaddress() {
+        return address;
     }
 
-    public void setAddressObject(Address addressObject) {
-        AddressObject = addressObject;
+    public void setaddress(Address addressObject) {
+        address = addressObject;
     }
 
     public String getPhone() {
@@ -66,11 +66,11 @@ public class Users {
         this.website = website;
     }
 
-    public Company getCompanyObject() {
-        return CompanyObject;
+    public Company getcompany() {
+        return company;
     }
 
-    public void setCompanyObject(Company companyObject) {
-        CompanyObject = companyObject;
+    public void setcompany(Company companyObject) {
+        company = companyObject;
     }
 }

@@ -5,7 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import co.com.ceiba.mobile.pruebadeingreso.data.UserDao;
+import co.com.ceiba.mobile.pruebadeingreso.rest.UserDao;
 import co.com.ceiba.mobile.pruebadeingreso.entity.User;
 
 @Database(entities = {User.class}, version = 1)
