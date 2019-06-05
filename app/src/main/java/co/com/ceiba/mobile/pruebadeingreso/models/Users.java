@@ -1,14 +1,38 @@
 package co.com.ceiba.mobile.pruebadeingreso.models;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "users")
 public class Users {
+    @PrimaryKey(autoGenerate = true)
+    private int uid;
+    @ColumnInfo(name = "id")
     private float id;
+    @ColumnInfo(name = "name")
     private String name;
+    @ColumnInfo(name = "username")
     private String username;
+    @ColumnInfo(name = "email")
     private String email;
-    Address address;
+    @Embedded
+    private Address address;
+    @ColumnInfo(name = "phone")
     private String phone;
+    @ColumnInfo(name = "website")
     private String website;
-    Company company;
+    @Embedded
+    private  Company company;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
 
     public float getId() {
         return id;
@@ -42,14 +66,6 @@ public class Users {
         this.email = email;
     }
 
-    public Address getaddress() {
-        return address;
-    }
-
-    public void setaddress(Address addressObject) {
-        address = addressObject;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -66,11 +82,19 @@ public class Users {
         this.website = website;
     }
 
-    public Company getcompany() {
+    public Company getCompany() {
         return company;
     }
 
-    public void setcompany(Company companyObject) {
-        company = companyObject;
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

@@ -8,16 +8,16 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import co.com.ceiba.mobile.pruebadeingreso.R;
 import co.com.ceiba.mobile.pruebadeingreso.adapters.AdaptadorUsers;
-import co.com.ceiba.mobile.pruebadeingreso.entity.User;
+import co.com.ceiba.mobile.pruebadeingreso.database.AppDatabase;
 import co.com.ceiba.mobile.pruebadeingreso.models.Users;
 import co.com.ceiba.mobile.pruebadeingreso.rest.Iservices;
 import co.com.ceiba.mobile.pruebadeingreso.rest.Restapidata;
+import co.com.ceiba.mobile.pruebadeingreso.utils.DatabaseInitializer;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,13 +40,16 @@ public class MainActivity extends Activity {
         editTextSearch = (TextView) findViewById(R.id.editTextSearch);
 
 
+
         Iservices iservices = Restapidata.getClientService();
         Call<List<Users>> call = iservices.getComics();
         call.enqueue(new Callback<List<Users>>() {
             @Override
             public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
 //                System.out.println(response.body().size());
-                postList = response.body();
+                /*postList = response.body();
+                DatabaseInitializer.populateAsync(AppDatabase.getAppDatabase(MainActivity.this),postList);*/
+                postList =DatabaseInitializer.getdata(AppDatabase.getAppDatabase(MainActivity.this));
                 myadapter = new AdaptadorUsers(getApplicationContext(), postList);
                 myrecyclerview.setAdapter(myadapter);
             }

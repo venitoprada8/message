@@ -1,6 +1,10 @@
 package co.com.ceiba.mobile.pruebadeingreso.models;
 
+import android.arch.persistence.room.ColumnInfo;
+
 public class Company {
+
+    @ColumnInfo(name = "namec")
     private String name;
     private String catchPhrase;
     private String bs;

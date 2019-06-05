@@ -1,11 +1,16 @@
 package co.com.ceiba.mobile.pruebadeingreso.models;
 
+import android.arch.persistence.room.Embedded;
+
 public class Address {
+
     private String street;
     private String suite;
     private String city;
     private String zipcode;
-    Geo geo;
+    @Embedded
+    private Geo geo;
+
 
 
     public String getStreet() {
@@ -40,11 +45,11 @@ public class Address {
         this.zipcode = zipcode;
     }
 
-    public Geo getgeo() {
+    public Geo getGeo() {
         return geo;
     }
 
-    public void setgeo(Geo geoObject) {
-        geo = geoObject;
+    public void setGeo(Geo geo) {
+        this.geo = geo;
     }
 }

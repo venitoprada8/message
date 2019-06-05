@@ -5,10 +5,11 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import co.com.ceiba.mobile.pruebadeingreso.models.Users;
 import co.com.ceiba.mobile.pruebadeingreso.rest.UserDao;
 import co.com.ceiba.mobile.pruebadeingreso.entity.User;
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {Users.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
