@@ -46,7 +46,7 @@ dependencies {
     implementation 'org.parceler:parceler-api:1.1.10'
     implementation 'com.facebook.stetho:stetho:1.5.0'
     annotationProcessor 'org.projectlombok:lombok:1.16.14'
-    annotationProcessor  'org.parceler:parceler:1.1.10'
+    annotationProcessor 'org.parceler:parceler:1.1.10'
     implementation 'org.projectlombok:lombok:1.16.14'
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     annotationProcessor "android.arch.persistence.room:compiler:1.1.1"

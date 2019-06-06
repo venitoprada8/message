@@ -1,6 +1,7 @@
 package co.com.ceiba.mobile.pruebadeingreso.view;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,7 @@ public class MainActivity extends Activity {
     private AdaptadorUsers myadapter;
     private TextView editTextSearch;
     List<Users> postList;
+    private ProgressDialog progress ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +41,15 @@ public class MainActivity extends Activity {
         myrecyclerview.setLayoutManager(new LinearLayoutManager(this));
         editTextSearch = (TextView) findViewById(R.id.editTextSearch);
 
+        progress= new ProgressDialog(this);
 
-
-        Iservices iservices = Restapidata.getClientService();
-        Call<List<Users>> call = iservices.getComics();
-        call.enqueue(new Callback<List<Users>>() {
-            @Override
-            public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
-//                System.out.println(response.body().size());
-                /*postList = response.body();
-                DatabaseInitializer.populateAsync(AppDatabase.getAppDatabase(MainActivity.this),postList);*/
-                postList =DatabaseInitializer.getdata(AppDatabase.getAppDatabase(MainActivity.this));
-                myadapter = new AdaptadorUsers(getApplicationContext(), postList);
-                myrecyclerview.setAdapter(myadapter);
-            }
-
-            @Override
-            public void onFailure(Call<List<Users>> call, Throwable t) {
-                System.out.println("");
-            }
-        });
-
+        postList =DatabaseInitializer.getdata(AppDatabase.getAppDatabase(MainActivity.this));
+        if (postList.isEmpty())
+            getdata();
+        else{
+            myadapter = new AdaptadorUsers(this, postList);
+            myrecyclerview.setAdapter(myadapter);
+        }
 
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -86,5 +76,33 @@ public class MainActivity extends Activity {
         super.onStart();
     }
 
+
+    private void getdata(){
+
+        progress.setCanceledOnTouchOutside(false);
+        progress.setMessage("Cargando...");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.isIndeterminate();
+        progress.setCancelable(false);
+        progress.show();
+
+        Iservices iservices = Restapidata.getClientService();
+        Call<List<Users>> call = iservices.getComics();
+        call.enqueue(new Callback<List<Users>>() {
+            @Override
+            public void onResponse(Call<List<Users>> call, Response<List<Users>> response) {
+                postList = response.body();
+                DatabaseInitializer.populateAsync(AppDatabase.getAppDatabase(MainActivity.this),postList);
+                myadapter = new AdaptadorUsers(MainActivity.this, postList);
+                myrecyclerview.setAdapter(myadapter);
+                progress.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<List<Users>> call, Throwable t) {
+                System.out.println("");
+            }
+        });
+    }
 
 }

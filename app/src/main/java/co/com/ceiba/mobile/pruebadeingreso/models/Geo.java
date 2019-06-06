@@ -1,6 +1,8 @@
 package co.com.ceiba.mobile.pruebadeingreso.models;
 
-public class Geo {
+import java.io.Serializable;
+
+public class Geo implements Serializable {
 
     private String lat;
 

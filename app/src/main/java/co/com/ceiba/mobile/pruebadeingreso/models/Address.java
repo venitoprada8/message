@@ -2,7 +2,9 @@ package co.com.ceiba.mobile.pruebadeingreso.models;
 
 import android.arch.persistence.room.Embedded;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
 
     private String street;
     private String suite;
